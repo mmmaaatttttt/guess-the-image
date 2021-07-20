@@ -1,0 +1,9 @@
+.Image {
+  width: 100%;
+  display: block;
+  opacity: 1;
+}
+
+.Image.hidden {
+  opacity: 0;
+}
