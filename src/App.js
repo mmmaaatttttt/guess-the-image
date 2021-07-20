@@ -1,19 +1,12 @@
+import images from "./data/images";
+import choice from "./util/choice";
+
 function App() {
+  const image = choice(images);
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <img src={image.src} alt={image.title} />
+      <h3>{image.title}</h3>
     </div>
   );
 }
