@@ -1,7 +1,9 @@
 .Image {
-  width: 100%;
+  max-width: 100%;
   display: block;
   opacity: 1;
+  max-height: 75vh;
+  margin: 0 auto;
 }
 
 .Image.hidden {
