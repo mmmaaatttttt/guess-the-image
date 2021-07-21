@@ -11,10 +11,7 @@ function App() {
   const nextImage = () => setImageIdx(oldIdx => oldIdx + 1);
 
   return started ? (
-    <div>
-      <ImageContainer {...shuffledImages[imageIdx]} onNext={nextImage} />
-      <h3>{shuffledImages[imageIdx].title}</h3>
-    </div>
+    <ImageContainer {...shuffledImages[imageIdx]} onNext={nextImage} />
   ) : (
     <button onClick={() => setStarted(true)}>Start Game</button>
   );

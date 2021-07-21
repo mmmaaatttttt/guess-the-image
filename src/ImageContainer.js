@@ -10,6 +10,7 @@ function ImageContainer({ src, title }) {
     <div className="ImageContainer" >
       <ImageBlocker {...dimensions} />
       <Image src={src} alt={title} setDimensions={setDimensions} />
+      <h3>{title}</h3>
     </div>
   );
 }
