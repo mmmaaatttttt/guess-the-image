@@ -1,13 +1,18 @@
+import { useState } from "react";
 import images from "./data/images";
-import choice from "./util/choice";
+import { shuffle } from "./util/random";
 import ImageContainer from "./ImageContainer"
 
+const shuffledImages = shuffle(images);
+
 function App() {
-  const image = choice(images);
+  const [started, setStarted] = useState(false);
+  const [imageIdx, setImageIdx] = useState(0);
+
   return (
     <div>
-      <ImageContainer {...image} />
-      <h3>{image.title}</h3>
+      <ImageContainer {...shuffledImages[imageIdx]} />
+      <h3>{shuffledImages[imageIdx].title}</h3>
     </div>
   );
 }
