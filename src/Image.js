@@ -1,23 +1,21 @@
 import { memo, useRef, useEffect, useState } from "react";
 import "./Image.css";
 
-function Image({ src, alt, setDimensions }) {
+function Image({ src, alt, handleDimensionsChange }) {
   const imageRef = useRef(null);
   const [hidden, setHidden] = useState(true);
 
   useEffect(() => {
     function handleResize() {
-      const { width, height } = imageRef.current.getBoundingClientRect();
-      setDimensions({ width, height });
+      handleDimensionsChange(imageRef.current.getBoundingClientRect());
     }
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
-  }, [setDimensions]);
+  }, [handleDimensionsChange]);
 
   const handleLoad = e => {
-    const { width, height } = e.target.getBoundingClientRect();
+    handleDimensionsChange(e.target.getBoundingClientRect());
     setHidden(false);
-    setDimensions({ width, height });
   };
 
   return (

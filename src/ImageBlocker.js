@@ -5,6 +5,7 @@ import { shuffle } from "./util/random";
 import "./ImageBlocker.css";
 
 function ImageBlocker({
+  left,
   width,
   height,
   numRows = 6,
@@ -22,13 +23,13 @@ function ImageBlocker({
     setHiddenCount(oldCount => oldCount + 1);
   }, []);
   const intervalInMS = durationInMS / (numRows * numCols);
-  
+
   useTimer({ durationInMS, intervalInMS, onInterval });
 
   return (
     <div
       className="ImageBlocker"
-      style={{ width: `${width}px`, height: `${height}px` }}
+      style={{ width: `${width}px`, height: `${height}px`, left: `${left}px` }}
     >
       {shuffledIndices.map((randomIdx, i) => {
         const rowIdx = Math.floor(i / numCols);
