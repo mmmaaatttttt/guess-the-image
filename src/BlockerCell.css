@@ -1,4 +1,10 @@
 .BlockerCell {
   background-color: aqua;
   position: absolute;
+  opacity: 1;
+  transition: opacity 1s;
+}
+
+.BlockerCell.hidden {
+  opacity: 0;
 }
