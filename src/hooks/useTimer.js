@@ -1,10 +1,12 @@
 import { useRef, useEffect, useCallback } from "react";
 
+const noop = () => {};
+
 const useTimer = ({
   durationInMS = 10000,
   intervalInMS = 1000,
-  onInterval = () => {},
-  onEnd = () => {}
+  onInterval = noop,
+  onEnd = noop
 }) => {
   const requestRef = useRef(null);
   const previousTimeRef = useRef(null);
@@ -25,6 +27,7 @@ const useTimer = ({
       if (!timeUp) {
         requestRef.current = requestAnimationFrame(animate);
       } else {
+        onInterval();
         onEnd();
       }
     },
