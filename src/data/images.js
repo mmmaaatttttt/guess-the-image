@@ -73,7 +73,7 @@ const images = [
   },
   {
     src: "https://m.media-amazon.com/images/M/MV5BNTA5ZThhY2MtMGZhOS00NTBmLWE0ZmQtOThjYmE5ZjBjN2I0XkEyXkFqcGdeQXVyOTc5MDI5NjE@._V1_.jpg",
-    title: "John Cho"
+    title: "Star Trek"
   },
   {
     src: "https://m.media-amazon.com/images/M/MV5BMTcxNzU1NDQwOF5BMl5BanBnXkFtZTgwNTc2NDA2NDE@._V1_.jpg",
