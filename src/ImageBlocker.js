@@ -1,10 +1,11 @@
-import { useMemo, useState, useCallback } from "react";
+import { useMemo, useState, useCallback, useEffect } from "react";
 import BlockerCell from "./BlockerCell";
 import useTimer from "./hooks/useTimer";
 import { shuffle } from "./util/random";
 import "./ImageBlocker.css";
 
 function ImageBlocker({
+  reveal,
   left,
   width,
   height,
@@ -24,7 +25,21 @@ function ImageBlocker({
   }, []);
   const intervalInMS = durationInMS / (numRows * numCols);
 
-  useTimer({ durationInMS, intervalInMS, onInterval });
+  const { cancel, start } = useTimer({
+    durationInMS,
+    intervalInMS,
+    onInterval
+  });
+
+  useEffect(() => {
+    if (hiddenCount === numRows * numCols) {
+      reveal();
+    }
+  }, [hiddenCount, numRows, numCols, reveal]);
+
+  useEffect(() => {
+    start();
+  }, [start]);
 
   return (
     <div

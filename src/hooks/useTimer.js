@@ -34,10 +34,18 @@ const useTimer = ({
     [onInterval, onEnd, durationInMS, intervalInMS]
   );
 
-  useEffect(() => {
+  const cancel = useCallback(() => cancelAnimationFrame(requestRef.current), []);
+  const start = useCallback(() => {
+    previousTimeRef.current = null;
+    initialTimeRef.current = null;
     requestRef.current = requestAnimationFrame(animate);
-    return () => cancelAnimationFrame(requestRef.current);
   }, [animate]);
+
+  useEffect(() => {
+    return cancel;
+  }, [cancel]);
+
+  return { cancel, start }
 };
 
 export default useTimer;

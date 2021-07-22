@@ -10,14 +10,20 @@ function ImageContainer({ src, title, nextImage }) {
     left: 0
   });
   const [ended, setEnded] = useState(false);
+  const reveal = () => setEnded(true);
 
   const handleDimensionsChange = ({ width, height, left }) => {
     setDimensions({ width, height, left });
   };
 
+  const handleNext = () => {
+    setEnded(false);
+    nextImage();
+  }
+
   return (
     <div className="ImageContainer">
-      <ImageBlocker {...dimensions} />
+      {!ended && <ImageBlocker {...dimensions} reveal={reveal} />}
       <Image
         src={src}
         alt={title}
@@ -26,10 +32,10 @@ function ImageContainer({ src, title, nextImage }) {
       {ended ? (
         <div>
           <h3>{title}</h3>
-          <button onClick={nextImage}>Select Next Image</button>
+          <button onClick={handleNext}>Select Next Image</button>
         </div>
       ) : (
-        <button onClick={() => setEnded(true)}>Reveal Answer</button>
+        <button onClick={reveal}>Reveal Answer</button>
       )}
     </div>
   );
