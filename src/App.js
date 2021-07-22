@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Heading, Button } from "@chakra-ui/react";
+import { Heading, Button, Center } from "@chakra-ui/react";
 import images from "./data/images";
 import { shuffle } from "./util/random";
 import ImageContainer from "./ImageContainer";
@@ -14,8 +14,19 @@ function App() {
   const bottomText = `Image ${imageIdx + 1} of ${shuffledImages.length}`;
 
   if (!started)
-    return <Button onClick={() => setStarted(true)}>Start Game</Button>;
-  if (ended) return <Heading>You finished the game!</Heading>;
+    return (
+      <Center width="100vw" height="100vh">
+        <Button size="lg" colorScheme="purple" onClick={() => setStarted(true)}>
+          Start Game
+        </Button>
+      </Center>
+    );
+  if (ended)
+    return (
+      <Center width="100vw" height="100vh">
+        <Heading size="2xl">You finished the game!</Heading>
+      </Center>
+    );
 
   return (
     <ImageContainer
