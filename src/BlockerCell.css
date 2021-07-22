@@ -3,6 +3,7 @@
   position: absolute;
   opacity: 1;
   transition: opacity 1s;
+  border: 1px solid aqua;
 }
 
 .BlockerCell.hidden {
