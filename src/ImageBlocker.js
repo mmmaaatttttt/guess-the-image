@@ -25,14 +25,13 @@ function ImageBlocker({
   }, []);
   const intervalInMS = durationInMS / (numRows * numCols);
 
-  const { cancel, start } = useTimer({
-    durationInMS,
+  const { start } = useTimer({
     intervalInMS,
     onInterval
   });
 
   useEffect(() => {
-    if (hiddenCount === numRows * numCols) {
+    if (hiddenCount === numRows * numCols + 1) {
       reveal();
     }
   }, [hiddenCount, numRows, numCols, reveal]);
