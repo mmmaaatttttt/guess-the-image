@@ -9,7 +9,6 @@ import {
 } from "@chakra-ui/react";
 import Image from "./Image";
 import ImageBlocker from "./ImageBlocker";
-import "./ImageContainer.css";
 
 function ImageContainer({ src, title, nextImage, bottomText }) {
   const [dimensions, setDimensions] = useState({
@@ -30,7 +29,7 @@ function ImageContainer({ src, title, nextImage, bottomText }) {
   };
 
   return (
-    <div className="ImageContainer">
+    <Box m="0 auto" textAlign="center" position="relative">
       {!ended && <ImageBlocker {...dimensions} reveal={reveal} />}
       <Image
         src={src}
@@ -55,7 +54,7 @@ function ImageContainer({ src, title, nextImage, bottomText }) {
           </SimpleGrid>
         )}
       </Box>
-    </div>
+    </Box>
   );
 }
 
