@@ -1,14 +1,8 @@
 import { useState } from "react";
-import {
-  Box,
-  Heading,
-  Button,
-  Text,
-  SimpleGrid,
-  GridItem
-} from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import Image from "./Image";
 import ImageBlocker from "./ImageBlocker";
+import Footer from "./Footer";
 
 function ImageContainer({ src, title, nextImage, bottomText }) {
   const [dimensions, setDimensions] = useState({
@@ -36,22 +30,28 @@ function ImageContainer({ src, title, nextImage, bottomText }) {
         alt={title}
         handleDimensionsChange={handleDimensionsChange}
       />
-      <Box pos="fixed" bottom={5} width="100%">
+      <Box
+        pos="fixed"
+        bottom={0}
+        py={5}
+        width="100%"
+        bg="gray.700"
+        color="white"
+      >
         {ended ? (
-          <SimpleGrid columns={[1, null, 3]} alignItems="center">
-            <Heading size="lg">{title}</Heading>
-            <Button onClick={handleNext}>Select Next Image</Button>
-            <Text>{bottomText}</Text>
-          </SimpleGrid>
+          <Footer
+            leftText={title}
+            btnText="Select Next Image"
+            handleClick={handleNext}
+            rightText={bottomText}
+          />
         ) : (
-          <SimpleGrid columns={[1, null, 3]} alignItems="center">
-            <GridItem colStart={2}>
-              <Button onClick={reveal} width={"100%"} colStart={2}>
-                Reveal Answer
-              </Button>
-            </GridItem>
-            <Text>{bottomText}</Text>
-          </SimpleGrid>
+          <Footer
+            leftText="Guess the movie!"
+            btnText="Reveal Answer"
+            handleClick={reveal}
+            rightText={bottomText}
+          />
         )}
       </Box>
     </Box>
