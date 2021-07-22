@@ -1,8 +1,8 @@
 import { useMemo, useState, useCallback, useEffect } from "react";
+import { Box } from "@chakra-ui/react";
 import BlockerCell from "./BlockerCell";
 import useTimer from "./hooks/useTimer";
 import { shuffle } from "./util/random";
-import "./ImageBlocker.css";
 
 function ImageBlocker({
   reveal,
@@ -40,8 +40,7 @@ function ImageBlocker({
   }, [start]);
 
   return (
-    <div
-      className="ImageBlocker"
+    <Box position="absolute"
       style={{ width: `${width}px`, height: `${height}px`, left: `${left}px` }}
     >
       {shuffledIndices.map((randomIdx, i) => {
@@ -58,7 +57,7 @@ function ImageBlocker({
           />
         );
       })}
-    </div>
+    </Box>
   );
 }
 
