@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Box } from "@chakra-ui/react";
+import { Box, Center } from "@chakra-ui/react";
 import Image from "./Image";
 import ImageBlocker from "./ImageBlocker";
 import Footer from "./Footer";
@@ -23,7 +23,7 @@ function ImageContainer({ src, title, nextImage, bottomText }) {
   };
 
   return (
-    <Box m="0 auto" textAlign="center" position="relative">
+    <Center m="0 auto" position="relative">
       {!ended && <ImageBlocker {...dimensions} reveal={reveal} />}
       <Image
         src={src}
@@ -54,7 +54,7 @@ function ImageContainer({ src, title, nextImage, bottomText }) {
           />
         )}
       </Box>
-    </Box>
+    </Center>
   );
 }
 
