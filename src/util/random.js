@@ -1,8 +1,3 @@
-export function choice(arr) {
-  const randomIndex = randomIntBetween(0, arr.length);
-  return arr[randomIndex];
-}
-
 export function shuffle(arr) {
   const arrCopy = [...arr];
   for (let i = arrCopy.length - 1; i > 0; i--) {
