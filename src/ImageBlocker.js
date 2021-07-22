@@ -9,9 +9,9 @@ function ImageBlocker({
   left,
   width,
   height,
-  numRows = 6,
-  numCols = 6,
-  durationInMS = 60000
+  numRows = 4,
+  numCols = 4,
+  intervalInMS = 1500
 }) {
   const widthPerCell = width / numCols;
   const heightPerCell = height / numRows;
@@ -23,7 +23,6 @@ function ImageBlocker({
   const onInterval = useCallback(() => {
     setHiddenCount(oldCount => oldCount + 1);
   }, []);
-  const intervalInMS = durationInMS / (numRows * numCols);
 
   const { start } = useTimer({
     intervalInMS,
