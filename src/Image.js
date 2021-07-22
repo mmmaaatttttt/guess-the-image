@@ -1,30 +1,21 @@
-import { memo, useRef, useEffect, useState } from "react";
-import "./Image.css";
+import { memo, useRef } from "react";
+import { Image as ChakraImage } from "@chakra-ui/react"
+import useSizeDetector from "./hooks/useSizeDetector";
 
 function Image({ src, alt, handleDimensionsChange }) {
   const imageRef = useRef(null);
-  const [hidden, setHidden] = useState(true);
-
-  useEffect(() => {
-    function handleResize() {
-      handleDimensionsChange(imageRef.current.getBoundingClientRect());
-    }
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, [handleDimensionsChange]);
-
-  const handleLoad = e => {
-    handleDimensionsChange(e.target.getBoundingClientRect());
-    setHidden(false);
-  };
+  useSizeDetector(imageRef, handleDimensionsChange);
 
   return (
-    <img
+    <ChakraImage
       src={src}
       alt={alt}
-      className={`Image ${hidden ? "hidden" : ""}`}
+      display="block"
+      margin="0 auto"
+      maxW="100%"
+      maxH="75vh"
+      ignoreFallback
       ref={imageRef}
-      onLoad={handleLoad}
     />
   );
 }
