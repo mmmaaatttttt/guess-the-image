@@ -33,7 +33,7 @@ function ImageContainer({ src, title, nextImage, bottomText }) {
   }
 
   return (
-    <Flex direction="column" position="relative" minH="100vh">
+    <Flex direction="column" position="relative" minH="100vh" bg="gray.200">
       <Flex flex={1} alignItems="center">
         {!ended && <ImageBlocker {...dimensions} reveal={reveal} />}
         <Image
