@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Flex } from "@chakra-ui/react";
+import { Flex, Box } from "@chakra-ui/react";
 import Image from "./Image";
 import ImageBlocker from "./ImageBlocker";
 import Footer from "./Footer";
@@ -33,13 +33,15 @@ function ImageContainer({ src, title, nextImage, bottomText }) {
   }
 
   return (
-    <Flex m="0 auto" position="relative">
-      {!ended && <ImageBlocker {...dimensions} reveal={reveal} />}
-      <Image
-        src={src}
-        alt={title}
-        handleDimensionsChange={handleDimensionsChange}
-      />
+    <Flex direction="column" position="relative" minH="100vh">
+      <Box flex={1}>
+        {!ended && <ImageBlocker {...dimensions} reveal={reveal} />}
+        <Image
+          src={src}
+          alt={title}
+          handleDimensionsChange={handleDimensionsChange}
+        />
+      </Box>
       <Footer
         leftText={leftText}
         btnText={btnText}
