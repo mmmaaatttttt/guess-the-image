@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Flex, Box } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 import Image from "./Image";
 import ImageBlocker from "./ImageBlocker";
 import Footer from "./Footer";
