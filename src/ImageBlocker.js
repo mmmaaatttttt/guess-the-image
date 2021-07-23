@@ -9,9 +9,9 @@ function ImageBlocker({
   left,
   width,
   height,
-  numRows = 4,
-  numCols = 4,
-  intervalInMS = 1500
+  numRows = 8,
+  numCols = 8,
+  intervalInMS = 1000
 }) {
   const widthPerCell = width / numCols;
   const heightPerCell = height / numRows;
@@ -54,6 +54,7 @@ function ImageBlocker({
             offsetX={colIdx * widthPerCell}
             offsetY={rowIdx * heightPerCell}
             hidden={randomIdx < hiddenCount}
+            transitionTime={intervalInMS / 2000}
           />
         );
       })}
