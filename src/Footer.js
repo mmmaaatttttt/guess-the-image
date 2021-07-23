@@ -1,14 +1,16 @@
-import { Heading, Button, Text, SimpleGrid } from "@chakra-ui/react";
+import { Heading, Button, Text, SimpleGrid, Box } from "@chakra-ui/react";
 
 function Footer({ leftText, btnText, rightText, handleClick }) {
   return (
-    <SimpleGrid columns={[1, null, 3]} alignItems="center" textAlign="center">
-      <Heading size="lg">{leftText}</Heading>
-      <Button onClick={handleClick} colorScheme="teal">
-        {btnText}
-      </Button>
-      <Text>{rightText}</Text>
-    </SimpleGrid>
+    <Box pos="fixed" bottom={0} py={5} width="100%" bg="gray.700" color="white">
+      <SimpleGrid columns={[1, null, 3]} alignItems="center" textAlign="center">
+        <Heading size="lg">{leftText}</Heading>
+        <Button onClick={handleClick} colorScheme="teal">
+          {btnText}
+        </Button>
+        <Text>{rightText}</Text>
+      </SimpleGrid>
+    </Box>
   );
 }
 

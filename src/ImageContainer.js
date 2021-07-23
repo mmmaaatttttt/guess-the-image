@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Box, Center } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 import Image from "./Image";
 import ImageBlocker from "./ImageBlocker";
 import Footer from "./Footer";
@@ -22,39 +22,31 @@ function ImageContainer({ src, title, nextImage, bottomText }) {
     nextImage();
   };
 
+  let leftText = "Guess the movie!";
+  let btnText = "Reveal Answer";
+  let handleClick = reveal;
+
+  if (ended) {
+    leftText = title;
+    btnText = "Select Next Image";
+    handleClick = handleNext;
+  }
+
   return (
-    <Center m="0 auto" position="relative">
+    <Flex m="0 auto" position="relative">
       {!ended && <ImageBlocker {...dimensions} reveal={reveal} />}
       <Image
         src={src}
         alt={title}
         handleDimensionsChange={handleDimensionsChange}
       />
-      <Box
-        pos="fixed"
-        bottom={0}
-        py={5}
-        width="100%"
-        bg="gray.700"
-        color="white"
-      >
-        {ended ? (
-          <Footer
-            leftText={title}
-            btnText="Select Next Image"
-            handleClick={handleNext}
-            rightText={bottomText}
-          />
-        ) : (
-          <Footer
-            leftText="Guess the movie!"
-            btnText="Reveal Answer"
-            handleClick={reveal}
-            rightText={bottomText}
-          />
-        )}
-      </Box>
-    </Center>
+      <Footer
+        leftText={leftText}
+        btnText={btnText}
+        handleClick={handleClick}
+        rightText={bottomText}
+      />
+    </Flex>
   );
 }
 
