@@ -34,14 +34,14 @@ function ImageContainer({ src, title, nextImage, bottomText }) {
 
   return (
     <Flex direction="column" position="relative" minH="100vh">
-      <Box flex={1}>
+      <Flex flex={1} alignItems="center">
         {!ended && <ImageBlocker {...dimensions} reveal={reveal} />}
         <Image
           src={src}
           alt={title}
           handleDimensionsChange={handleDimensionsChange}
         />
-      </Box>
+      </Flex>
       <Footer
         leftText={leftText}
         btnText={btnText}
