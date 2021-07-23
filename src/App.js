@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { Heading, Button, Center } from "@chakra-ui/react";
 import images from "./data/images";
 import { shuffle } from "./util/random";
 import ImageContainer from "./ImageContainer";
+import StartScreen from "./StartScreen";
+import EndScreen from "./EndScreen";
 
 const shuffledImages = shuffle(images);
 
@@ -10,24 +11,13 @@ function App() {
   const [started, setStarted] = useState(false);
   const [imageIdx, setImageIdx] = useState(0);
   const nextImage = () => setImageIdx(oldIdx => oldIdx + 1);
+  const handleClick = () => setStarted(true);
   const ended = imageIdx === shuffledImages.length;
   const bottomText = `Image ${imageIdx + 1} of ${shuffledImages.length}`;
 
-  if (!started)
-    return (
-      <Center width="100vw" height="100vh">
-        <Button size="lg" colorScheme="purple" onClick={() => setStarted(true)}>
-          Start Game
-        </Button>
-      </Center>
-    );
-  if (ended)
-    return (
-      <Center width="100vw" height="100vh">
-        <Heading size="2xl">You finished the game!</Heading>
-      </Center>
-    );
-
+  if (!started) return <StartScreen handleClick={handleClick} />;
+  if (ended) return <EndScreen />;
+  
   return (
     <ImageContainer
       {...shuffledImages[imageIdx]}

@@ -22,7 +22,7 @@ function ImageContainer({ src, title, nextImage, bottomText }) {
     nextImage();
   };
 
-  let leftText = "Guess the movie!";
+  let leftText = "Guess the Movie!";
   let btnText = "Reveal Answer";
   let handleClick = reveal;
 
