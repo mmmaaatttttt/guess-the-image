@@ -98,7 +98,7 @@ const images = [
   {
     src: "https://m.media-amazon.com/images/M/MV5BMTg2NDg4NjcxOV5BMl5BanBnXkFtZTgwMDkwMDAyNDM@._V1_.jpg",
     title: "The Last Jedi"
-  },
+  }
 ];
 
 export default images;
