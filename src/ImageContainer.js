@@ -4,7 +4,7 @@ import Image from "./Image";
 import ImageBlocker from "./ImageBlocker";
 import Footer from "./Footer";
 
-function ImageContainer({ src, title, nextImage, bottomText }) {
+function ImageContainer({ src, title, nextImage, label, bottomText }) {
   const [dimensions, setDimensions] = useState({
     width: 0,
     height: 0,
@@ -22,7 +22,7 @@ function ImageContainer({ src, title, nextImage, bottomText }) {
     nextImage();
   };
 
-  let leftText = "Guess the Movie!";
+  let leftText = `Guess the ${label}!`;
   let btnText = "Reveal Answer";
   let handleClick = reveal;
 

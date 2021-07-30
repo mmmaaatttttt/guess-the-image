@@ -1,6 +1,6 @@
-import { Heading, Button, Flex } from "@chakra-ui/react";
+import { Heading, Button, Flex, Select, Text } from "@chakra-ui/react";
 
-function StartScreen({ handleClick }) {
+function StartScreen({ handleChange, handleStart, options }) {
   return (
     <Flex
       direction="column"
@@ -10,8 +10,17 @@ function StartScreen({ handleClick }) {
       alignItems="center"
       bg="gray.200"
     >
-      <Heading size="4xl" p={3}>Guess the Movie!</Heading>
-      <Button size="lg" colorScheme="purple" onClick={handleClick}>
+      <Heading size="4xl" p={3}>
+        <Text>Guess the</Text>
+        <Select variant="flushed" bg="teal" onChange={handleChange}>
+          {options.map((label, idx) => (
+            <option key={label} value={idx}>
+              {label}!
+            </option>
+          ))}
+        </Select>
+      </Heading>
+      <Button size="lg" colorScheme="purple" onClick={handleStart}>
         Start Game
       </Button>
     </Flex>
