@@ -1,5 +1,6 @@
 import movieData from "./movies";
 import tvShowData from "./tvshows";
+import albumData from "./albums";
 
 const data = [
   {
@@ -9,6 +10,10 @@ const data = [
   {
     label: "TV Show",
     images: tvShowData
+  },
+  {
+    label: "Album",
+    images: albumData
   }
 ];
 
