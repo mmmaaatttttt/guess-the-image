@@ -47,7 +47,11 @@ function ImageBlocker({
 	return (
 		<Box
 			position="absolute"
-			style={{ width: `${width}px`, height: `${height}px`, left: `${left}px` }}
+			style={{
+				width: `${width}px`,
+				height: `${height}px`,
+				left: `${left}px`,
+			}}
 		>
 			{shuffledIndices.map((randomIdx, i) => {
 				const rowIdx = Math.floor(i / numCols);
