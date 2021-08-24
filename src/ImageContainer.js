@@ -50,12 +50,14 @@ function ImageContainer({
 		<Flex
 			direction="column"
 			alignItems="center"
-			justifyContent="space-around"
+			justifyContent="space-evenly"
 			position="relative"
 			minH="100vh"
 			bg="gray.200"
 		>
-			<Heading size="lg">Your score is: {score}</Heading>
+			<Heading padding="10px" size="lg">
+				Your score is: {score}
+			</Heading>
 			<Flex flex={1} alignItems="center">
 				{!ended && (
 					<ImageBlocker

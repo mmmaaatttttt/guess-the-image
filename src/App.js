@@ -47,7 +47,7 @@ function App() {
 				options={imageData.map((d) => d.label)}
 			/>
 		);
-	if (gameEnded) return <EndScreen />;
+	if (gameEnded) return <EndScreen score={score} images={images} />;
 
 	return (
 		<ImageContainer
