@@ -19,7 +19,7 @@ function Footer({
 }) {
 	function handleSubmit(evt) {
 		evt.preventDefault();
-		console.log('GUESS', guess);
+
 		handleGuess(guess, title.toLowerCase());
 	}
 	function handleChange(evt) {
