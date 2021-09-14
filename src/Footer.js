@@ -16,6 +16,7 @@ function Footer({
   title,
   handleClick,
   handleGuess,
+  ended,
   guess,
   wrongGuess,
   scoreText,
@@ -34,7 +35,7 @@ function Footer({
     <Box
       py={5}
       width="100%"
-      bg={isCorrect ? "green.400" : wrongGuess > 0 ? "red.600" : "gray.700"}
+      bg={isCorrect ? "green.400" : wrongGuess > 1 ? "red.600" : "gray.700"}
       color="white"
     >
       <SimpleGrid columns={[1, null, 4]} alignItems="center" textAlign="center">
@@ -44,6 +45,8 @@ function Footer({
         <form onSubmit={handleSubmit}>
           {isCorrect ? (
             <Heading size="lg">Correct!</Heading>
+          ) : ended ? (
+            <Heading size="lg">Try again!</Heading>
           ) : (
             <Input
               style={{
@@ -73,7 +76,7 @@ function Footer({
         >
           {btnText}
         </Button>
-        {wrongGuess > 0 ? (
+        {wrongGuess > 1 ? (
           <Flex direction="column">
             <Text>{rightText}</Text>
             <Text>{`Chances ${wrongGuess} of 3`}</Text>

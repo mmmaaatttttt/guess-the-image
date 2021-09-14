@@ -17,6 +17,7 @@ function ImageContainer({
   guess,
   setGuess,
   wrongGuess,
+  setWrongGuess,
   isCorrect,
   setIsCorrrect,
   score,
@@ -38,6 +39,7 @@ function ImageContainer({
   const handleNext = () => {
     setEnded(false);
     setIsCorrrect(false);
+    setWrongGuess(1);
     nextImage();
   };
 
@@ -90,6 +92,7 @@ function ImageContainer({
         setGuess={setGuess}
         handleClick={handleClick}
         rightText={bottomText}
+        ended={ended}
         scoreText={scoreText}
       />
     </Flex>

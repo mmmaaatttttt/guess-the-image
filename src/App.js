@@ -8,7 +8,7 @@ import { shuffle } from "./util/random";
 function App() {
   const [hiddenCount, setHiddenCount] = useState(0);
   const [ended, setEnded] = useState(false);
-  const [wrongGuess, setWrongGuess] = useState(0);
+  const [wrongGuess, setWrongGuess] = useState(1);
   const [isCorrect, setIsCorrrect] = useState(false);
   const [selectedIdx, setSelectedIdx] = useState(0);
   const [score, setScore] = useState(0);
@@ -17,6 +17,7 @@ function App() {
   const [imageIdx, setImageIdx] = useState(0);
   const reveal = () => {
     setEnded(true);
+    setWrongGuess(1);
     setGuess("");
   };
 
@@ -31,7 +32,7 @@ function App() {
 
     if (valLower === targetLower) {
       setScore((score) => score + 1);
-      setWrongGuess(0);
+      setWrongGuess(1);
       setIsCorrrect(true);
       reveal();
     }
@@ -40,8 +41,8 @@ function App() {
     }
 
     if (wrongGuess >= 3) {
-      setWrongGuess(0);
-      setEnded(false);
+      setWrongGuess(1);
+      setEnded(true);
       setIsCorrrect(false);
       nextImage();
       setHiddenCount(0);
@@ -77,6 +78,7 @@ function App() {
       setEnded={setEnded}
       guess={guess}
       wrongGuess={wrongGuess}
+      setWrongGuess={setWrongGuess}
       setGuess={setGuess}
       score={score}
       hiddenCount={hiddenCount}
