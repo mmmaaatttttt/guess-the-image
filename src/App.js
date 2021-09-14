@@ -44,7 +44,6 @@ function App() {
       setWrongGuess(1);
       setEnded(true);
       setIsCorrrect(false);
-      nextImage();
       setHiddenCount(0);
     }
   };
