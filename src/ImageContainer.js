@@ -1,8 +1,8 @@
+import { Flex } from "@chakra-ui/react";
 import { useState } from "react";
-import { Flex, Heading } from "@chakra-ui/react";
+import Footer from "./Footer";
 import Image from "./Image";
 import ImageBlocker from "./ImageBlocker";
-import Footer from "./Footer";
 
 function ImageContainer({
   src,
@@ -13,11 +13,16 @@ function ImageContainer({
   setEnded,
   label,
   bottomText,
+  scoreText,
   guess,
   setGuess,
+  wrongGuess,
   isCorrect,
   setIsCorrrect,
   score,
+  start,
+  hiddenCount,
+  setHiddenCount,
   handleGuess
 }) {
   const [dimensions, setDimensions] = useState({
@@ -55,15 +60,15 @@ function ImageContainer({
       minH="100vh"
       bg="gray.200"
     >
-      <Heading padding="10px" size="lg">
-        Your score is: {score}
-      </Heading>
       <Flex flex={1} alignItems="center">
         {!ended && (
           <ImageBlocker
             {...dimensions}
             reveal={reveal}
             score={score}
+            start={start}
+            hiddenCount={hiddenCount}
+            setHiddenCount={setHiddenCount}
             nextImage={nextImage}
           />
         )}
@@ -74,16 +79,18 @@ function ImageContainer({
           handleDimensionsChange={handleDimensionsChange}
         />
       </Flex>
-      {isCorrect ? <Heading> Boom! You got it!!</Heading> : null}
       <Footer
+        isCorrect={isCorrect}
         leftText={leftText}
         btnText={btnText}
         handleGuess={handleGuess}
         title={title}
         guess={guess}
+        wrongGuess={wrongGuess}
         setGuess={setGuess}
         handleClick={handleClick}
         rightText={bottomText}
+        scoreText={scoreText}
       />
     </Flex>
   );

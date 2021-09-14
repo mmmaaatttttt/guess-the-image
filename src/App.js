@@ -1,12 +1,14 @@
-import { useState, useMemo } from "react";
+import { useMemo, useState } from "react";
 import imageData from "./data";
-import { shuffle } from "./util/random";
+import EndScreen from "./EndScreen";
 import ImageContainer from "./ImageContainer";
 import StartScreen from "./StartScreen";
-import EndScreen from "./EndScreen";
+import { shuffle } from "./util/random";
 
 function App() {
+  const [hiddenCount, setHiddenCount] = useState(0);
   const [ended, setEnded] = useState(false);
+  const [wrongGuess, setWrongGuess] = useState(0);
   const [isCorrect, setIsCorrrect] = useState(false);
   const [selectedIdx, setSelectedIdx] = useState(0);
   const [score, setScore] = useState(0);
@@ -17,20 +19,32 @@ function App() {
     setEnded(true);
     setGuess("");
   };
+
   const nextImage = () => setImageIdx((oldIdx) => oldIdx + 1);
   const handleChange = (e) => {
     setSelectedIdx(+e.target.value);
   };
   const handleGuess = (val, target) => {
-    target = target.toLowerCase();
-    val = val.toLowerCase();
+    const targetLower = target.toLowerCase();
+    const valLower = val.toLowerCase();
     setGuess(val);
-    console.log("VALLL", val);
-    console.log("TARGET", target);
-    if (val === target) {
-      setScore((score) => (score += 1));
+
+    if (valLower === targetLower) {
+      setScore((score) => score + 1);
+      setWrongGuess(0);
       setIsCorrrect(true);
       reveal();
+    }
+    if (valLower !== targetLower && wrongGuess < 3) {
+      setWrongGuess((wrongGuess) => wrongGuess + 1);
+    }
+
+    if (wrongGuess >= 3) {
+      setWrongGuess(0);
+      setEnded(false);
+      setIsCorrrect(false);
+      nextImage();
+      setHiddenCount(0);
     }
   };
   const handleStart = () => setStarted(true);
@@ -38,6 +52,7 @@ function App() {
   const randomImages = useMemo(() => shuffle(images), [images]);
   const gameEnded = imageIdx === images.length;
   const bottomText = `Image ${imageIdx + 1} of ${images.length}`;
+  const scoreText = `Score: ${score}/${images.length}`;
 
   if (!started)
     return (
@@ -53,6 +68,7 @@ function App() {
     <ImageContainer
       {...randomImages[imageIdx]}
       bottomText={bottomText}
+      scoreText={scoreText}
       label={label}
       reveal={reveal}
       ended={ended}
@@ -60,8 +76,11 @@ function App() {
       setIsCorrrect={setIsCorrrect}
       setEnded={setEnded}
       guess={guess}
+      wrongGuess={wrongGuess}
       setGuess={setGuess}
       score={score}
+      hiddenCount={hiddenCount}
+      setHiddenCount={setHiddenCount}
       handleGuess={handleGuess}
       nextImage={nextImage}
     />

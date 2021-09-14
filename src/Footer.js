@@ -1,13 +1,15 @@
 import {
+  Box,
+  Button,
+  Flex,
   Heading,
   Input,
-  Button,
-  Text,
   SimpleGrid,
-  Box
+  Text
 } from "@chakra-ui/react";
 
 function Footer({
+  isCorrect,
   leftText,
   btnText,
   rightText,
@@ -15,6 +17,8 @@ function Footer({
   handleClick,
   handleGuess,
   guess,
+  wrongGuess,
+  scoreText,
   setGuess
 }) {
   function handleSubmit(evt) {
@@ -27,38 +31,59 @@ function Footer({
     setGuess(evt.target.value);
   }
   return (
-    <Box py={5} width="100%" bg="gray.700" color="white">
+    <Box
+      py={5}
+      width="100%"
+      bg={isCorrect ? "green.400" : wrongGuess > 0 ? "red.600" : "gray.700"}
+      color="white"
+    >
       <SimpleGrid columns={[1, null, 4]} alignItems="center" textAlign="center">
-        <Heading size="lg">{leftText}</Heading>
+        <Heading color={isCorrect ? "#805ad5" : "white"} size="lg">
+          {leftText}
+        </Heading>
         <form onSubmit={handleSubmit}>
-          <Input
-            style={{
-              marginTop: "5px",
-              backgroundColor: "#319795",
-              border: "none",
-              color: "#fff"
-            }}
-            autoComplete="off"
-            focusBorderColor="#fff"
-            textAlign="center"
-            size="md"
-            width="90%"
-            placeholder="Take a Guess!"
-            onChange={handleChange}
-            id="guess"
-            name="guess"
-            value={guess}
-          />
+          {isCorrect ? (
+            <Heading size="lg">Correct!</Heading>
+          ) : (
+            <Input
+              style={{
+                marginTop: "5px",
+                backgroundColor: "#fff",
+                border: "none",
+                color: "#000"
+              }}
+              autoComplete="off"
+              focusBorderColor="#fff"
+              textAlign="center"
+              size="md"
+              width="90%"
+              placeholder="Take a Guess!"
+              onChange={handleChange}
+              id="guess"
+              name="guess"
+              value={guess}
+            />
+          )}
         </form>
         <Button
           style={{ justifySelf: "center", marginTop: "5px" }}
           width="90%"
           onClick={handleClick}
-          colorScheme="teal"
+          colorScheme={isCorrect ? "purple" : "teal"}
         >
           {btnText}
         </Button>
-        <Text>{rightText}</Text>
+        {wrongGuess > 0 ? (
+          <Flex direction="column">
+            <Text>{rightText}</Text>
+            <Text>{`Chances ${wrongGuess} of 3`}</Text>
+          </Flex>
+        ) : (
+          <Flex direction="column">
+            <Text>{rightText}</Text>
+            <Text>{scoreText}</Text>
+          </Flex>
+        )}
       </SimpleGrid>
     </Box>
   );
