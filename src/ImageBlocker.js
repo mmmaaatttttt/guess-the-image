@@ -1,5 +1,5 @@
-import { useMemo, useState, useCallback, useEffect } from "react";
 import { Box } from "@chakra-ui/react";
+import { useCallback, useEffect, useMemo } from "react";
 import BlockerCell from "./BlockerCell";
 import useTimer from "./hooks/useTimer";
 import { shuffle } from "./util/random";
@@ -9,9 +9,12 @@ function ImageBlocker({
   left,
   width,
   height,
+  score,
+  hiddenCount,
+  setHiddenCount,
   numRows = 8,
-  numCols = 8,
-  intervalInMS = 1000
+  intervalInMS = 1000,
+  numCols = 8
 }) {
   const widthPerCell = width / numCols;
   const heightPerCell = height / numRows;
@@ -19,9 +22,9 @@ function ImageBlocker({
     () => shuffle(Array.from({ length: numRows * numCols }, (_, i) => i)),
     [numRows, numCols]
   );
-  const [hiddenCount, setHiddenCount] = useState(0);
+
   const onInterval = useCallback(() => {
-    setHiddenCount(oldCount => oldCount + 1);
+    setHiddenCount((oldCount) => oldCount + 1);
   }, []);
 
   const { start } = useTimer({
@@ -30,18 +33,27 @@ function ImageBlocker({
   });
 
   useEffect(() => {
+    start();
+  }, [start]);
+
+  useEffect(() => {
     if (hiddenCount === numRows * numCols + 1) {
       reveal();
     }
   }, [hiddenCount, numRows, numCols, reveal]);
 
   useEffect(() => {
-    start();
-  }, [start]);
+    setHiddenCount(0);
+  }, [score]);
 
   return (
-    <Box position="absolute"
-      style={{ width: `${width}px`, height: `${height}px`, left: `${left}px` }}
+    <Box
+      position="absolute"
+      style={{
+        width: `${width}px`,
+        height: `${height}px`,
+        left: `${left}px`
+      }}
     >
       {shuffledIndices.map((randomIdx, i) => {
         const rowIdx = Math.floor(i / numCols);

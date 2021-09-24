@@ -1,5 +1,5 @@
 import { memo, useRef } from "react";
-import { Image as ChakraImage } from "@chakra-ui/react"
+import { Image as ChakraImage } from "@chakra-ui/react";
 import useSizeDetector from "./hooks/useSizeDetector";
 
 function Image({ src, alt, handleDimensionsChange }) {

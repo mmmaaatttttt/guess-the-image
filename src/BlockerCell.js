@@ -1,7 +1,14 @@
 import { memo } from "react";
 import { Box } from "@chakra-ui/react";
 
-function BlockerCell({ width, height, offsetX, offsetY, hidden, transitionTime }) {
+function BlockerCell({
+  width,
+  height,
+  offsetX,
+  offsetY,
+  hidden,
+  transitionTime
+}) {
   return (
     <Box
       opacity={hidden ? 0 : 1}
